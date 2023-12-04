@@ -1,0 +1,17 @@
+{
+  "editor.formatOnSave": true,
+  {% if use_eslint_prettier -%}
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  {%- endif %}
+  "dotenv.enableAutocloaking": false,
+  {% if use_jest -%}
+  "jest.autoRun": {
+    "watch": false,
+    "onSave": "test-file"
+  }
+  {%- endif %}
+}

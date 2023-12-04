@@ -1,0 +1,102 @@
+_subdirectory: template_content
+
+# questions
+# project_name should never get prompted, AlgoKit should always pass it by convention
+project_name:
+  type: str
+  help: Name for this project.
+  placeholder: 'algorand-app'
+
+author_name:
+  type: str
+  help: Package author name
+  placeholder: 'Your Name'
+
+author_email:
+  type: str
+  help: Package author email
+  placeholder: 'your@email.tld'
+
+ide_vscode:
+  type: bool
+  help: Do you want to add VSCode configuration?
+  default: yes
+
+ide_jetbrains:
+  type: bool
+  help: Do you want to add JetBrains configuration (primarily optimized for WebStorm)?
+  when: '{{ ide_vscode == false }}'
+  default: no
+
+use_eslint_prettier:
+  type: bool
+  help: Do you want to use ESLint and Prettier for code linting and formatting?
+  default: yes
+
+use_tailwind:
+  type: bool
+  help: Do you want to use Tailwind CSS? A utility-first CSS framework for rapidly building custom designs.
+  default: yes
+
+use_daisy_ui:
+  type: bool
+  help: Do you want to use a daisyUI? Framework agnostic CSS component library for building modern websites and web applications fast.
+  default: yes
+  when: '{{ use_tailwind != false }}'
+
+use_jest:
+  type: bool
+  help: Do you want to include unit tests (via Jest)?
+  default: yes
+
+use_playwright:
+  type: bool
+  help: Do you want to include end to end tests (via Playwright)?
+  default: yes
+
+use_github_actions:
+  type: bool
+  help: Do you want to include Github Actions workflows for build validation?
+  default: yes
+
+cloud_provider:
+  type: str
+  help: Pick your website hosting provider for continuous delivery
+  when: '{{ use_github_actions != false }}'
+  choices:
+    Netlify: 'netlify'
+    Vercel: 'vercel'
+    Skip CD setup: 'none'
+  default: 'netlify'
+
+# The following should never get prompted; algokit should always pass these values through by convention
+
+algod_token:
+  type: str
+  help: Default Algod Token
+  default: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+algod_server:
+  type: str
+  help: Default Algod server
+  default: 'http://localhost'
+
+algod_port:
+  type: int
+  help: Default Algod port
+  default: 4001
+
+indexer_token:
+  type: str
+  help: Default Indexer token
+  default: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+indexer_server:
+  type: str
+  help: Default Indexer server
+  default: 'http://localhost'
+
+indexer_port:
+  type: int
+  help: Default Indexer port
+  default: 8980

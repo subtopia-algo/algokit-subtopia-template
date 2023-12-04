@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "docs/**"
+      - "**.md"
+      - ".vscode/**"
+      - ".idea/**"
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  lint-and-build:
+    name: CI dApp
+    uses: ./.github/workflows/checks.yaml
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Vercel
+    environment: Prod
+    concurrency: "${{ github.workflow }}-prod"
+    needs:
+      - lint-and-build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Create placeholder .env file
+        uses: makerxstudio/shared-config/.github/actions/env-to-placeholders@main
+        with:
+          env-output-path: './.env'
+          env-template-path: './.env.template'
+          env-variable-prefix: VITE_
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Replace template vars
+        uses: makerxstudio/shared-config/.github/actions/placeholder-transforms@main
+        with:
+          app-artifact-path: './.vercel/output'
+          static-site-transforms: |-
+            VITE_ALGOD_TOKEN:${{ secrets.VITE_ALGOD_TOKEN }}
+            VITE_ALGOD_SERVER:${{ vars.VITE_ALGOD_SERVER }}
+            VITE_ALGOD_PORT:${{ vars.VITE_ALGOD_PORT }}
+            VITE_ALGOD_NETWORK:${{ vars.VITE_ALGOD_NETWORK }}
+            VITE_INDEXER_SERVER:${{ vars.VITE_INDEXER_SERVER }}
+            VITE_INDEXER_PORT:${{ vars.VITE_INDEXER_PORT }}
+            VITE_INDEXER_TOKEN:${{ secrets.VITE_INDEXER_TOKEN }}
+            VITE_ENVIRONMENT:${{ vars.VITE_ENVIRONMENT }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        # Set your vercel project env variables on your site instance on https://vercel.com/dashboard
+      
