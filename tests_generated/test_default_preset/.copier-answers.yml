@@ -1,0 +1,13 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: <commit>
+_src_path: <src>
+algod_port: 4001
+algod_server: http://localhost
+algod_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+cloud_provider: none
+indexer_port: 8980
+indexer_server: http://localhost
+indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+preset: default
+project_name: test_default_preset
+
