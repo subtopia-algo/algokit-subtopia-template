@@ -28,6 +28,7 @@ def _generate_default_parameters(
     return {
         "author_name": "None",
         "author_email": "None",
+        "preset": "default",
         "ide_vscode": default_state,
         "ide_jetbrains": ide_jetbrains,
         "use_eslint_prettier": default_state,
@@ -159,45 +160,11 @@ def run_init(
             file.write_text(content)
     return result
 
-
-def test_all_default_parameters_on_vercel(working_dir: Path) -> None:
+def test_default_preset(working_dir: Path) -> None:
     response = run_init(
         working_dir,
-        "test_all_default_parameters_on_vercel",
-        answers=_generate_default_parameters("yes", "vercel"),
-        custom_check_args=[NPM_INSTALL_ARGS, NPM_LINT_ARGS, NPM_BUILD_ARGS],
-    )
-
-    assert response.returncode == 0, response.stdout
-
-
-def test_all_default_parameters_on_netlify(working_dir: Path) -> None:
-    response = run_init(
-        working_dir,
-        "test_all_default_parameters_on_netlify",
-        answers=_generate_default_parameters("yes", "netlify"),
-        custom_check_args=[NPM_INSTALL_ARGS, NPM_LINT_ARGS, NPM_BUILD_ARGS],
-    )
-
-    assert response.returncode == 0, response.stdout
-
-
-def test_all_default_parameters_off(working_dir: Path) -> None:
-    response = run_init(
-        working_dir,
-        "test_all_default_parameters_off",
-        answers=_generate_default_parameters("no"),
-        custom_check_args=[NPM_INSTALL_ARGS, NPM_BUILD_ARGS],
-    )
-
-    assert response.returncode == 0, response.stdout
-
-
-def test_all_default_parameters_off_jetbrains(working_dir: Path) -> None:
-    response = run_init(
-        working_dir,
-        "test_all_default_parameters_jetbrains",
-        answers=_generate_default_parameters("no", ide_jetbrains="yes"),
+        "test_default_preset",
+        answers=_generate_default_parameters("yes"),
         custom_check_args=[NPM_INSTALL_ARGS, NPM_BUILD_ARGS],
     )
 

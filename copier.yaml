@@ -5,21 +5,32 @@ _subdirectory: template_content
 project_name:
   type: str
   help: Name for this project.
-  placeholder: 'algorand-app'
+  placeholder: 'subtopia-algorand-app'
+
+preset:
+  type: str
+  help: Pick a preset (defaults to recommended)
+  choices:
+    'Default': 'default'
+    'Custom': 'custom'
+  default: 'default'
 
 author_name:
   type: str
   help: Package author name
+  when: '{{ preset == "custom" }}'
   placeholder: 'Your Name'
 
 author_email:
   type: str
   help: Package author email
+  when: '{{ preset == "custom" }}'
   placeholder: 'your@email.tld'
 
 ide_vscode:
   type: bool
   help: Do you want to add VSCode configuration?
+  when: '{{ preset == "custom" }}'
   default: yes
 
 ide_jetbrains:
@@ -31,31 +42,36 @@ ide_jetbrains:
 use_eslint_prettier:
   type: bool
   help: Do you want to use ESLint and Prettier for code linting and formatting?
+  when: '{{ preset == "custom" }}'
   default: yes
 
 use_tailwind:
   type: bool
   help: Do you want to use Tailwind CSS? A utility-first CSS framework for rapidly building custom designs.
+  when: '{{ preset == "custom" }}'
   default: yes
 
 use_daisy_ui:
   type: bool
   help: Do you want to use a daisyUI? Framework agnostic CSS component library for building modern websites and web applications fast.
   default: yes
-  when: '{{ use_tailwind != false }}'
+  when: '{{ use_tailwind != false && preset == "custom" }}'
 
 use_jest:
   type: bool
+  when: '{{ preset == "custom" }}'
   help: Do you want to include unit tests (via Jest)?
   default: yes
 
 use_playwright:
   type: bool
+  when: '{{ preset == "custom" }}'
   help: Do you want to include end to end tests (via Playwright)?
   default: yes
 
 use_github_actions:
   type: bool
+  when: '{{ preset == "custom" }}'
   help: Do you want to include Github Actions workflows for build validation?
   default: yes
 
