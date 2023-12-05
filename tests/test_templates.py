@@ -160,6 +160,7 @@ def run_init(
             file.write_text(content)
     return result
 
+
 def test_default_preset(working_dir: Path) -> None:
     response = run_init(
         working_dir,

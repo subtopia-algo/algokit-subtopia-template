@@ -1,6 +1,10 @@
 # test_default_preset
 
-This starter React project has been generated using AlgoKit. See below for default getting started instructions.
+This starter Subtopia integrated dApp project has been generated using AlgoKit. See below for default getting started instructions.
+
+- For detailed documentation on Subtopia platform refer to [Subtopia documentation](https://docs.subtopia.io).
+- To learn more about Subtopia JavaScript SDK refer to [SDK documentation](https://docs.subtopia.io/integrations/javascript-sdk).
+- To see other more generic examples in Next.js, React, Vue.js and Svelte refer to [Subtopia examples](https://github.com/subtopia-algo/subtopia-js-examples)
 
 # Setup
 

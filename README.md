@@ -8,13 +8,17 @@
     <a href="https://github.com/algorandfoundation/algokit-cli"><img src="https://img.shields.io/badge/Powered by-AlgoKit-black.svg" /></a>
 </p>
 
+<!-- <br />
+<pre>npm i <a href="https://www.npmjs.com/package/react-use">react-use</a></pre>
+<br /> -->
+
 ---
 
 This template is a starter template for building an Algorand based dApp on React with [`subtopia-js-sdk`](https://github.com/subtopia-algo/subtopia-js) integration. The template is based on the official [`algokit-react-template`](https://github.com/algorandfoundation/algokit-react-frontend-template).
 
 ## Features
 
-The template offers two presets, the recommended preset includes all of the above, a custom preset allows you to select which features you want to include in your project.
+The template offers two presets, the recommended preset includes all of the features included in the official [algokit-react-frontend-template](https://github.com/algorandfoundation/algokit-react-frontend-template), a custom preset allows you to select which features you want to include in your project.
 
 The full list of features includes the following:
 

@@ -6,7 +6,7 @@ import algosdk from 'algosdk'
 import { SnackbarProvider } from 'notistack'
 import { useState } from 'react'
 import ConnectWallet from './components/ConnectWallet'
-import Transact from './components/Transact'
+import Transact from './components/Demo'
 import { getAlgodConfigFromViteEnvironment, getKmdConfigFromViteEnvironment } from './utils/network/getAlgoClientConfigs'
 
 let providersArray: ProvidersArray
@@ -64,34 +64,34 @@ export default function App() {
   return (
     <SnackbarProvider maxSnack={3}>
       <WalletProvider value={walletProviders}>
-        <div className="hero min-h-screen bg-teal-400">
-          <div className="hero-content text-center rounded-lg p-6 max-w-md bg-white mx-auto">
-            <div className="max-w-md">
+        <div className="hero min-h-screen">
+          <div className="hero-content text-center rounded-lg p-6 max-w-md mx-auto bg-neutral">
+            <div className="max-w-md ">
               <h1 className="text-4xl">
-                Welcome to <div className="font-bold">AlgoKit 🙂</div>
+                Welcome to <div className="font-bold text-cyan-400">Subtopia.io</div> AlgoKit example
               </h1>
               <p className="py-6">
-                This starter has been generated using official AlgoKit React template. Refer to the resource below for next steps.
+                This starter has been generated using Subtopia AlgoKit template. Refer to the resources below for next steps.
               </p>
 
               <div className="grid">
                 <a
                   data-test-id="getting-started"
-                  className="btn btn-primary m-2"
+                  className="btn btn-primary bg-teal-800 hover:bg-teal-900 border-teal-800 m-2"
                   target="_blank"
-                  href="https://github.com/algorandfoundation/algokit-cli"
+                  href="https://github.com/subtopia-algo/subtopia-js-sdk"
                 >
                   Getting started
                 </a>
 
                 <div className="divider" />
-                <button data-test-id="connect-wallet" className="btn m-2" onClick={toggleWalletModal}>
+                <button data-test-id="connect-wallet" className="btn m-2 " onClick={toggleWalletModal}>
                   Wallet Connection
                 </button>
 
                 {activeAddress && (
-                  <button data-test-id="transactions-demo" className="btn m-2" onClick={toggleDemoModal}>
-                    Transactions Demo
+                  <button data-test-id="transactions-demo" className="btn m-2 " onClick={toggleDemoModal}>
+                    Subscription Integration Demo
                   </button>
                 )}
               </div>
